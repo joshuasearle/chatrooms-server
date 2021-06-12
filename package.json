@@ -9,5 +9,9 @@
   "dependencies": {
     "express": "^4.17.1",
     "socket.io": "^4.1.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.12",
+    "@types/socket.io": "^3.0.2"
   }
 }
