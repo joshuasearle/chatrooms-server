@@ -1,0 +1,9 @@
+{
+  "name": "chatrooms-server",
+  "version": "1.0.0",
+  "description": "- The backend code for the chatrooms webapp",
+  "main": "server.ts",
+  "scripts": {},
+  "author": "",
+  "license": "ISC"
+}
