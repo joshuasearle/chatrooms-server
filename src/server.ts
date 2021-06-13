@@ -1,14 +1,16 @@
 import express from 'express';
 import http from 'http';
+import dotenv from 'dotenv';
 
 import { onSocketConnect, onSocketDisconnect } from './sockets';
 import router from './router';
 import { Server } from 'socket.io';
 import { rooms } from './store';
+dotenv.config();
 
 const app = express();
 const server = http.createServer(app);
-const port = 5000;
+const port = process.env.PORT;
 
 const io = new Server(server);
 
