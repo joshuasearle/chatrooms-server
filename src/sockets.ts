@@ -12,13 +12,21 @@ export const onSocketDisconnect = (socket: SocketType) => {
   console.log(`${socket.id} just disconnected`);
 };
 
+interface MessageRequest {
+  roomName: string;
+  content: string;
+  socketId: string;
+}
+
 // Store socket in closure using currying
 const onSocketMessage =
   (socket: SocketType, emitRooms: any) =>
-  ({ roomName, content }: any) => {
+  ({ roomName, content, socketId }: MessageRequest) => {
+    console.log(roomName, content, socketId);
+
     if (content === '') return;
     if (!rooms.roomExists(roomName)) return;
-    if (!users.userExists(socket)) return;
-    rooms.sendMessage(roomName, content, users.getDisplayName(socket));
+    if (!users.userExists(socketId)) return;
+    rooms.sendMessage(roomName, content, users.getDisplayName(socketId));
     emitRooms();
   };

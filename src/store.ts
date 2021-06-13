@@ -27,20 +27,20 @@ class Users {
     this.users = new Map<string, string>();
   }
 
-  addUser(socket: SocketType, displayName: string) {
-    this.users.set(socket.id, displayName);
+  addUser(socketId: string, displayName: string) {
+    this.users.set(socketId, displayName);
   }
 
-  removeUser(socket: SocketType) {
-    this.users.delete(socket.id);
+  removeUser(socketId: string) {
+    this.users.delete(socketId);
   }
 
-  userExists(socket: SocketType) {
-    return this.users.has(socket.id);
+  userExists(socketId: string) {
+    return this.users.has(socketId);
   }
 
-  getDisplayName(socket: SocketType) {
-    return this.users.get(socket.id);
+  getDisplayName(socketId: string) {
+    return this.users.get(socketId);
   }
 }
 
@@ -48,7 +48,7 @@ class Rooms {
   private rooms: Map<string, Message[]>;
 
   constructor() {
-    this.rooms = new Map<string, Message[]>();
+    this.clearRooms();
   }
 
   addRoom(roomName: string) {
@@ -69,6 +69,18 @@ class Rooms {
 
   roomExists(roomName: string) {
     return this.rooms.has(roomName);
+  }
+
+  getRooms() {
+    const roomsArray: any = [];
+    this.rooms.forEach((messages, roomName) =>
+      roomsArray.push({ messages, roomName })
+    );
+    return roomsArray;
+  }
+
+  clearRooms() {
+    this.rooms = new Map<string, Message[]>();
   }
 }
 

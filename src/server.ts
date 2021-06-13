@@ -13,11 +13,15 @@ const port = 5000;
 const io = new Server(server);
 
 export const emitRooms: any = () => {
-  io.sockets.emit('rooms', rooms);
+  io.sockets.emit('rooms', rooms.getRooms());
 };
 
 io.on('connection', onSocketConnect(emitRooms));
 io.on('disconnect', onSocketDisconnect);
+
+setInterval(() => {
+  rooms.clearRooms();
+}, 1000 * 60 * 60 * 2);
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');

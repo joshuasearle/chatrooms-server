@@ -23,7 +23,11 @@ router.post('/login', (req, res) => {
   }
 
   users.addUser(socketId, displayName);
-  res.send({ created: true, message: 'User was created', rooms: rooms });
+  res.send({
+    created: true,
+    message: 'User was created',
+    rooms: rooms.getRooms(),
+  });
 });
 
 router.post('/room', (req, res) => {
@@ -44,6 +48,10 @@ router.post('/room', (req, res) => {
   }
 
   rooms.addRoom(roomName);
+  res.send({
+    created: true,
+    message: 'Room has been created',
+  });
   emitRooms();
 });
 
