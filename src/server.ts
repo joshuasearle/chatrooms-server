@@ -25,6 +25,8 @@ setInterval(() => {
   rooms.clearRooms();
 }, 1000 * 60 * 60 * 2);
 
+app.use(express.static('public'));
+
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header(
