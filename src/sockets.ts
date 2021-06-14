@@ -22,8 +22,6 @@ interface MessageRequest {
 const onSocketMessage =
   (socket: SocketType, emitRooms: any) =>
   ({ roomName, content, socketId }: MessageRequest) => {
-    console.log(roomName, content, socketId);
-
     if (content === '') return;
     if (!rooms.roomExists(roomName)) return;
     if (!users.userExists(socketId)) return;
